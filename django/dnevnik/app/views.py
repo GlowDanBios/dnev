@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 def index(request):
     if request.user.is_authenticated:
-        day = Day.objects.all()
+        day = Day.objects.filter(user=request.user.id)
         lessons = []
         for i in day:
             lessons.append(Lesson.objects.filter(project_id = i.id))
@@ -97,6 +97,7 @@ def delete_lesson(request):
     else:
         return redirect('/enter')
 
+
 def add_event(request):
     if request.user.is_authenticated:
         event = request.GET.get("not", None)
@@ -182,6 +183,10 @@ def reg(request):
             u = User.objects.create_user(log)
             u.set_password(pwd)
             u.save()
+            for i in range(5):
+                d = Day()
+                d.user = u
+                d.save()
             return redirect('/enter')
     return redirect('/enter')
 
