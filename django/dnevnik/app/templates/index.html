@@ -7,14 +7,15 @@
 <body>
 <h1>Расписание на неделю</h1>
 {% for i in day %}
-    <h1>День {{ i.id }}</h1>
+    <h3><a href = "/day?did={{i.id}}">День {{ i.id }}</a></h3>
     <ol>
         {% for l in lessons %}
             {% for k in l %}
                 {% if k.project_id == i.id %}
-                    <h2>
+                    <h4>
                         <li><a href="/lesson?lid={{ k.id }}">{{ k.name }}</a></li>
-                    </h2>
+                    <small><a href="delete_lesson?iii={{ k.id }}">Удалить</a></small>
+                    </h4>
                 {% endif %}
             {% endfor %}
         {% endfor %}

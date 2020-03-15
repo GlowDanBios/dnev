@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>День</title>
+</head>
+
+<body>
+    <h1> {{ day.name }}</h1>
+    {% for e in event %}
+    <h3>{{ e.text }}</h3>
+    {% endfor %}
+    <form action="/add_event">
+        <input type="hidden" name="id" value="{{ day.id }}">
+        <input type="text" name="not" placeholder="Текст события">
+        <button>Добавить событие</button>
+    </form>
+    <h2><a href="/">Обратно</a></h2>
+</body>
+
+</html>

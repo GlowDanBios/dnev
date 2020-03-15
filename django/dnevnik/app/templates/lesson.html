@@ -6,12 +6,27 @@
 </head>
 <body>
 <h1> {{ lesson.name }}</h1>
+<h3>Домашнее задание:</h3>
+{% for n in htask %}
+    {% if n.is_done %}
+        <h3><strike>{{ n.text }}</strike></h3>
+    {% else %}
+        <h3>{{ n.text }}</h3>
+        <small><a href="do?lid={{ lesson.id }}&idd={{ n.id }}">Сделано</a></small>
+    {% endif %}
+{% endfor %}
+<form action="/add_htask">
+    <input type="hidden" name="id" value="{{ lesson.id }}">
+    <input type="text" name="not" placeholder="Текст дз">
+    <button>Добавить ДЗ</button>
+</form>
+<h3>Заметки:</h3>
 {% for n in note %}
-<h3>{{ n.text }}</h3>
+    <h3>{{ n.text }}</h3>
 {% endfor %}
 <form action="/add_note">
     <input type="hidden" name="id" value="{{ lesson.id }}">
-    <input type="text" name="not" placeholder="Текст заметка">
+    <input type="text" name="not" placeholder="Текст заметки">
     <button>Добавить заметку</button>
 </form>
 </body>

@@ -29,7 +29,20 @@ class Lesson(models.Model):
 
 
 class Note(models.Model):
-    text = models.TextField(null=False,default="")
+    text = models.TextField(null=False, default="")
 
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True)
 
+
+class Htask(models.Model):
+    text = models.TextField(null=False, default="")
+
+    is_done = models.BooleanField(null=False, default=False)
+
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True)
+
+
+class Event(models.Model):
+    text = models.TextField(null=False,default="")
+
+    day = models.ForeignKey(Day, on_delete=models.CASCADE, null=True)
