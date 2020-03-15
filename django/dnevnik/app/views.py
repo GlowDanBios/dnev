@@ -1,15 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Day,Lesson, Note, Htask, Event
-
-# Create your views here.
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 
 def index(request):
-    day = Day.objects.all()
-    lessons = []
-    for i in day:
-        lessons.append(Lesson.objects.filter(project_id = i.id))
-    return render(request, 'index.html', {"lessons":lessons, "day":day})
+    if request.user.is_authenticated:
+        day = Day.objects.all()
+        lessons = []
+        for i in day:
+            lessons.append(Lesson.objects.filter(project_id = i.id))
+        return render(request, 'index.html', {"lessons":lessons, "day":day})
+    else:
+        return redirect('/enter')
 
 
 def add_lesson(request):
@@ -128,3 +132,42 @@ def delete_n(request):
         n = get_object_or_404(Note, pk=id)
         n.delete()
     return redirect(f'/lesson?lid={lid}')
+
+
+def reg(request):
+    log = request.GET.get('log', None)
+    pwd = request.GET.get('pwd', None)
+    if log and pwd:
+        if User.objects.get(username=log):
+            messages.info(request, "Существует пользователь с таким логином.")
+            return redirect('/enter')
+        else:
+            u = User.objects.create_user(log)
+            u.set_password(pwd)
+            u.save()
+            return redirect('/enter')
+    return redirect('/enter')
+
+
+def enter(request):
+    return render(request, 'auth.html')
+
+
+def logut(request):
+    logout(request)
+    return redirect('/enter')
+
+
+def log(request):
+    log = request.GET.get('log', None)
+    pwd = request.GET.get('pwd', None)
+    if log and pwd:
+        user = authenticate(request, username=log, password=pwd)
+        if user is not None:
+            print(1)
+            login(request, user)
+            return redirect('/')
+        else:
+            # messages.info("неверный логин или пароль")
+            return redirect('/enter')
+    return redirect('/enter')
