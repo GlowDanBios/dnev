@@ -37,7 +37,7 @@ class Note(models.Model):
 class Htask(models.Model):
     text = models.TextField(null=False, default="")
 
-    is_done = models.BooleanField(null=False, default=False)
+    is_done = models.BooleanField(null=Falsge, default=False)
 
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True)
 

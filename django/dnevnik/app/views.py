@@ -175,7 +175,7 @@ def reg(request):
     log = request.GET.get('log', None)
     pwd = request.GET.get('pwd', None)
     if log and pwd:
-        if User.objects.get(username=log):
+        if User.objects.filter(username=log):
             messages.info(request, "Существует пользователь с таким логином.")
             return redirect('/enter')
         else:
