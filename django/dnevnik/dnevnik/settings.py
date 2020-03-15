@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '45.8.230.173',
-    'universai.site'
+    'universai.site',
+    '127.0.0.1'
 ]
 
 

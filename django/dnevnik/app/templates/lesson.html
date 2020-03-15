@@ -3,32 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Урок</title>
+    <link rel="stylesheet" type="text/css" href="bulma.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+
 </head>
+<style>
+    .columns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
 <body>
-<h1> {{ lesson.name }}</h1>
-<h3>Домашнее задание:</h3>
-{% for n in htask %}
-    {% if n.is_done %}
-        <h3><strike>{{ n.text }}</strike></h3>
-    {% else %}
-        <h3>{{ n.text }}</h3>
-        <small><a href="do?lid={{ lesson.id }}&idd={{ n.id }}">Сделано</a></small>
-    {% endif %}
-{% endfor %}
-<form action="/add_htask">
-    <input type="hidden" name="id" value="{{ lesson.id }}">
-    <input type="text" name="not" placeholder="Текст дз">
-    <button>Добавить ДЗ</button>
-</form>
-<h3>Заметки:</h3>
-{% for n in note %}
-    <h3>{{ n.text }}</h3>
-{% endfor %}
-<form action="/add_note">
-    <input type="hidden" name="id" value="{{ lesson.id }}">
-    <input type="text" name="not" placeholder="Текст заметки">
-    <button>Добавить заметку</button>
-</form>
-<h2><a href="/">Обратно</a></h2>
+<section class="hero is-info">
+    <div class="hero-body">
+        <h1 class="title">Личный помощник школьника</h1>
+        <h2 class="subtitle">GDMS0918</h2>
+    </div>
+</section>
+<h1 class="subtitle has-text-centered"> {{ lesson.name }}</h1>
+<div class="columns">
+    <div class="column is-one-half has-text-centered">
+        <h2>Домашнее задание:</h2>
+        {% for n in htask %}
+            {% if n.is_done %}
+                <h3><strike>{{ n.text }}</strike></h3>
+            {% else %}
+                <h3>{{ n.text }}</h3>
+                <small><a href="do?lid={{ lesson.id }}&idd={{ n.id }}">Сделано</a></small>
+            {% endif %}
+        {% endfor %}
+        <form action="/add_htask">
+            <input type="hidden" name="id" value="{{ lesson.id }}">
+            <div class="field">
+                <input class="input" type="text" name="not" placeholder="Текст дз">
+            </div>
+            <button class="button">Добавить ДЗ</button>
+        </form>
+    </div>
+    <div class="column is-half has-text-centered">
+        <h2>Заметки:</h2>
+        {% for n in note %}
+            <h3>{{ n.text }}</h3>
+            <small><a href="delete_n?id={{ n.id }}&lid={{ lesson.id }}">Удалить</a></small>
+        {% endfor %}
+        <form class="form" action="/add_note">
+            <input type="hidden" name="id" value="{{ lesson.id }}">
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" name="not" placeholder="Текст заметки">
+                </div>
+            </div>
+            <button class="button">Добавить заметку</button>
+        </form>
+    </div>
+</div>
+<h2 class="has-text-centered"><a href="/">Обратно</a></h2>
 </body>
 </html>

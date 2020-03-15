@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import index, add_lesson, lesson, add_note, delete_lesson, add_htask, add_event, day, do
+from app.views import index, add_lesson, lesson, add_note, delete_lesson, add_htask, add_event, day, do, delete_n, delete_e, clear_d_h
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +28,7 @@ urlpatterns = [
     path('day', day),
     path('add_event', add_event),
     path('do', do),
+    path('delete_n', delete_n),
+    path('delete_e', delete_e),
+    path('clear_d_h', clear_d_h),
 ]

@@ -103,3 +103,28 @@ def do(request):
         ht.is_done = True
         ht.save()
     return redirect(f'/lesson?lid={lid}')
+
+
+def clear_d_h(request):
+    h = Htask.objects.filter(is_done=True)
+    for i in h:
+        h.delete()
+    return redirect('/')
+
+
+def delete_e(request):
+    id = request.GET.get("id", None)
+    did = request.GET.get("did", None)
+    if id:
+        e = get_object_or_404(Event, pk=id)
+        e.delete()
+    return redirect(f'/day?did={did}')
+
+
+def delete_n(request):
+    id = request.GET.get("id", None)
+    lid = request.GET.get("lid", None)
+    if id:
+        n = get_object_or_404(Note, pk=id)
+        n.delete()
+    return redirect(f'/lesson?lid={lid}')
