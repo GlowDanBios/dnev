@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Main</title>
 </head>
-
 <body>
-    <h1>Расписание на неделю</h1>
-    {%for i in day%}
-    <h1>День {{i.id}}</h1>
+<h1>Расписание на неделю</h1>
+{% for i in day %}
+    <h1>День {{ i.id }}</h1>
     <ol>
-    {%for l in lessons%}
-    {%for k in l%}
-    {%if k.project_id == i.id%}
-    <h2><li>{{k.name}}</li></h2>
-    {%endif%}
-    {%endfor%}
-    {%endfor%}
+        {% for l in lessons %}
+            {% for k in l %}
+                {% if k.project_id == i.id %}
+                    <h2>
+                        <li><a href="/lesson?lid={{ k.id }}">{{ k.name }}</a></li>
+                    </h2>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
     </ol>
-    {%endfor%}
+    <form action="/add_lesson">
+        <input name="did" type="hidden" value="{{ i.id }}">
+        <input name="name" type="text" placeholder="Название урока">
+        <button>Добавить урок</button>
+    </form>
+{% endfor %}
 </body>
-
 </html>

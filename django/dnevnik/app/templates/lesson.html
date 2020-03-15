@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Урок</title>
+</head>
+<body>
+<h1> {{ lesson.name }}</h1>
+{% for n in note %}
+<h3>{{ n.text }}</h3>
+{% endfor %}
+</body>
+</html>

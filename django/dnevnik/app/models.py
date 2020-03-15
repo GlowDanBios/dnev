@@ -28,3 +28,8 @@ class Lesson(models.Model):
     project = models.ForeignKey(Day, on_delete=models.CASCADE, null=True)
 
 
+class Note(models.Model):
+    text = models.TextField(null=False,default="")
+
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True)
+
