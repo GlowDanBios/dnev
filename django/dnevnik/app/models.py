@@ -6,6 +6,8 @@ from django.db import models
 class Day(models.Model):
     index = models.TextField(null=False, default="")
 
+    lessnum = models.TextField(null=False, default=0)
+
     # done = models.TextField(null=False, default=0)
 
     # num = models.TextField(null=False, default=0)
