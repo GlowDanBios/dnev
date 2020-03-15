@@ -7,7 +7,7 @@
 <body>
 <h1>Расписание на неделю</h1>
 {% for i in day %}
-    <h1>День {{ i.id }}</h1>
+    <h1><a href = "/day?did={{i.id}}">День {{ i.id }}</a></h1>
     <ol>
         {% for l in lessons %}
             {% for k in l %}

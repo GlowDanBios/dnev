@@ -33,3 +33,8 @@ class Note(models.Model):
 
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True)
 
+class Event(models.Model):
+    text = models.TextField(null=False,default="")
+
+    day = models.ForeignKey(Day, on_delete=models.CASCADE, null=True)
+

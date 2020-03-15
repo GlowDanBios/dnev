@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Day,Lesson, Note
+from .models import Day,Lesson, Note, Event
 
 # Create your views here.
 
@@ -25,11 +25,29 @@ def add_lesson(request):
 
 def lesson(request):
     lid = request.GET.get('lid', None)
-    print(lid)
     if lid:
         less = get_object_or_404(Lesson, pk=lid)
         note = Note.objects.filter(lesson=less.id)
         return render(request, 'lesson.html', {'lesson':less, 'note': note})
+    else:
+        return redirect('/')
+
+def add_event(request):
+    event = request.GET.get("not", None)
+    i = request.GET.get("id", None)
+    if event:
+        e = Event()
+        e.text = event
+        e.day = get_object_or_404(Day, pk=i)
+        e.save()
+    return redirect(f'/day?did={i}')
+
+def day(request):
+    did = request.GET.get('did', None)
+    if did:
+        day = get_object_or_404(Day, pk=did)
+        event = Event.objects.filter(day=day.id)
+        return render(request, 'day.html', {'day':day, 'event': event})
     else:
         return redirect('/')
 
