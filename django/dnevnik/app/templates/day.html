@@ -30,10 +30,10 @@
         <h3>{{ e.text }}</h3> <small><a href="delete_e?id={{ e.id }}&did={{ day.id }}">Удалить</a></small>
     {% endfor %}
     <form class="form" action="/add_event">
-        <input type="hidden" name="id" value="{{ day.id }}">
+        <input type="hidden" name="id" value="{{ day.id }}" autocomplete="off">
         <div class="field">
             <div class="control">
-                <input width="" class="input" type="text" name="not" placeholder="Текст события">
+                <input width="" class="input" type="text" name="not" placeholder="Текст события" autocomplete="off">
             </div>
         </div>
         <button class="button">Добавить событие</button>

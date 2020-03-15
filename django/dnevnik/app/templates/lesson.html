@@ -36,9 +36,9 @@
             {% endif %}
         {% endfor %}
         <form action="/add_htask">
-            <input type="hidden" name="id" value="{{ lesson.id }}">
+            <input type="hidden" name="id" value="{{ lesson.id }}" autocomplete="off">
             <div class="field">
-                <input class="input" type="text" name="not" placeholder="Текст дз">
+                <input class="input" type="text" name="not" placeholder="Текст дз" autocomplete="off">
             </div>
             <button class="button">Добавить ДЗ</button>
         </form>
@@ -50,10 +50,10 @@
             <small><a href="delete_n?id={{ n.id }}&lid={{ lesson.id }}">Удалить</a></small>
         {% endfor %}
         <form class="form" action="/add_note">
-            <input type="hidden" name="id" value="{{ lesson.id }}">
+            <input type="hidden" name="id" value="{{ lesson.id }}" autocomplete="off">
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" name="not" placeholder="Текст заметки">
+                    <input class="input" type="text" name="not" placeholder="Текст заметки" autocomplete="off">
                 </div>
             </div>
             <button class="button">Добавить заметку</button>

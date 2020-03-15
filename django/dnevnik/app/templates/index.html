@@ -48,9 +48,9 @@
                         {% endfor %}
                     </table>
                     <form class="form" action="/add_lesson">
-                        <input name="did" type="hidden" value="{{ i.id }}">
+                        <input name="did" type="hidden" value="{{ i.id }}" autocomplete="off">
                         <div class="field">
-                            <input class="input is-info" name="name" type="text" placeholder="Название урока">
+                            <input class="input is-info" name="name" type="text" placeholder="Название урока" autocomplete="off">
                         </div>
                         <button class="button">Добавить урок</button>
                     </form>
