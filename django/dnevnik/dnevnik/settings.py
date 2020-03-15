@@ -25,7 +25,10 @@ SECRET_KEY = 'sbw$j4r-imsrk-!1^us%-k1j^l7^j6m$alq0+hzc7_cscnd0jp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '45.8.230.173',
+    'universai.site'
+]
 
 
 # Application definition
