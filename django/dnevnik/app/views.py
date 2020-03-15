@@ -32,3 +32,14 @@ def lesson(request):
         return render(request, 'lesson.html', {'lesson':less, 'note': note})
     else:
         return redirect('/')
+
+
+def add_note(request):
+    note = request.GET.get("not", None)
+    i = request.GET.get("id", None)
+    if note:
+        n = Note()
+        n.text = note
+        n.lesson = get_object_or_404(Lesson, pk=i)
+        n.save()
+    return redirect(f'/lesson?lid={i}')

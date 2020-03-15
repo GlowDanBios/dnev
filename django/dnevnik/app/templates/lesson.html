@@ -9,5 +9,10 @@
 {% for n in note %}
 <h3>{{ n.text }}</h3>
 {% endfor %}
+<form action="/add_note">
+    <input type="hidden" name="id" value="{{ lesson.id }}">
+    <input type="text" name="not" placeholder="Текст заметка">
+    <button>Добавить заметку</button>
+</form>
 </body>
 </html>
